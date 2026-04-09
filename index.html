@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Maureen Wanjiku — Data Analyst</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg:        #04080f;
+      --surface:   #0a1628;
+      --surface2:  #0f1f3d;
+      --surface3:  #162847;
+      --accent:    #5b9bd5;
+      --accent2:   #89bfe8;
+      --text:      #e8edf5;
+      --muted:     #7a8fa8;
+      --border:    rgba(91,155,213,0.18);
+      --border2:   rgba(91,155,213,0.08);
+    }
+
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1.1rem 4rem;
+      background: rgba(4,8,15,0.88);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem; font-weight: 600;
+      color: var(--accent); letter-spacing: 0.06em;
+    }
+    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+    .nav-links a {
+      color: var(--muted); text-decoration: none;
+      font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase;
+      transition: color 0.3s;
+    }
+    .nav-links a:hover { color: var(--accent2); }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: flex; flex-direction: column; justify-content: center;
+      padding: 8rem 4rem 4rem;
+      position: relative; overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute; inset: 0; pointer-events: none;
+      background:
+        radial-gradient(ellipse 60% 50% at 80% 30%, rgba(15,31,61,0.9) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 60% at 10% 80%, rgba(91,155,213,0.07) 0%, transparent 60%);
+    }
+    .hero-grid {
+      position: absolute; inset: 0; pointer-events: none;
+      background-image:
+        linear-gradient(var(--border2) 1px, transparent 1px),
+        linear-gradient(90deg, var(--border2) 1px, transparent 1px);
+      background-size: 60px 60px;
+      mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 30%, transparent 100%);
+    }
+    .hero-content { position: relative; z-index: 1; }
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 0.8rem;
+      color: var(--accent); font-size: 0.75rem; letter-spacing: 0.25em;
+      text-transform: uppercase; margin-bottom: 1.6rem; font-weight: 500;
+    }
+    .hero-eyebrow::before { content: ''; width: 32px; height: 1px; background: var(--accent); }
+    h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3.8rem, 9vw, 7.5rem);
+      font-weight: 700; line-height: 0.95;
+      margin-bottom: 1.2rem;
+    }
+    h1 em { font-style: italic; color: var(--accent2); }
+    .hero-tagline {
+      max-width: 560px; color: var(--muted);
+      font-size: 1rem; line-height: 1.8; margin-bottom: 2.5rem;
+    }
+    .hero-tagline strong { color: var(--text); font-weight: 500; }
+    .cta-row { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .btn {
+      padding: 0.8rem 2rem; border-radius: 3px;
+      font-family: 'Inter', sans-serif; font-size: 0.78rem;
+      font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
+      text-decoration: none; cursor: pointer; display: inline-block;
+      transition: all 0.3s;
+    }
+    .btn-primary { background: var(--accent); color: var(--bg); border: 2px solid var(--accent); }
+    .btn-primary:hover { background: var(--accent2); border-color: var(--accent2); }
+    .btn-outline { background: transparent; color: var(--accent); border: 2px solid var(--border); }
+    .btn-outline:hover { border-color: var(--accent); }
+    .socials-row {
+      display: flex; gap: 0.8rem; flex-wrap: wrap;
+      margin-top: 3rem; align-items: center;
+    }
+    .socials-row span {
+      font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase;
+      color: var(--muted); margin-right: 0.4rem;
+    }
+    .soc {
+      color: var(--muted); text-decoration: none; font-size: 0.75rem;
+      padding: 0.35rem 0.9rem;
+      border: 1px solid var(--border); border-radius: 2px; transition: all 0.3s;
+    }
+    .soc:hover { color: var(--accent2); border-color: var(--accent); }
+
+    /* SECTIONS */
+    section { padding: 6rem 4rem; }
+    .label {
+      display: inline-flex; align-items: center; gap: 0.8rem;
+      color: var(--accent); font-size: 0.72rem; letter-spacing: 0.22em;
+      text-transform: uppercase; font-weight: 600; margin-bottom: 0.8rem;
+    }
+    .label::after { content: ''; width: 40px; height: 1px; background: var(--accent); }
+    h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      font-weight: 700; line-height: 1.1; margin-bottom: 3rem;
+    }
+    h2 em { font-style: italic; color: var(--accent2); }
+
+    /* ABOUT */
+    #about { background: var(--surface); }
+    .about-wrap { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 5rem; align-items: start; }
+    .about-copy p { color: var(--muted); line-height: 1.9; margin-bottom: 1.1rem; font-size: 0.97rem; }
+    .about-copy p strong { color: var(--text); font-weight: 500; }
+    .stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; margin-bottom: 2rem; }
+    .stat {
+      padding: 1.4rem 1.6rem;
+      background: var(--surface2); border: 1px solid var(--border); border-radius: 4px;
+    }
+    .stat-n {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.6rem; font-weight: 700; color: var(--accent); line-height: 1;
+    }
+    .stat-l { font-size: 0.75rem; color: var(--muted); margin-top: 0.3rem; line-height: 1.4; }
+    .skills-section h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.25rem; color: var(--accent2); margin-bottom: 1.2rem;
+    }
+    .skill-groups { display: flex; flex-direction: column; gap: 1rem; }
+    .skill-group-label {
+      font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 0.5rem; font-weight: 600;
+    }
+    .tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+    .tag {
+      padding: 0.3rem 0.9rem;
+      background: var(--surface3); border: 1px solid var(--border);
+      border-radius: 100px; font-size: 0.76rem; color: var(--text);
+    }
+
+    /* EXPERIENCE */
+    #experience { background: var(--bg); }
+    .exp-list { display: flex; flex-direction: column; max-width: 860px; }
+    .exp-item {
+      display: grid; grid-template-columns: 220px 1fr;
+      border-top: 1px solid var(--border2);
+      padding: 2.5rem 0; gap: 3rem;
+    }
+    .exp-item:last-child { border-bottom: 1px solid var(--border2); }
+    .exp-company { font-weight: 600; color: var(--accent2); font-size: 0.88rem; line-height: 1.4; }
+    .exp-period { font-size: 0.72rem; color: var(--muted); margin-top: 0.3rem; }
+    .exp-location { font-size: 0.72rem; color: var(--muted); margin-top: 0.2rem; }
+    .exp-role {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.25rem; font-weight: 600; margin-bottom: 0.8rem;
+    }
+    .exp-note { font-size: 0.82rem; color: var(--accent); font-style: italic; margin-bottom: 0.8rem; }
+    .exp-bullets { list-style: none; }
+    .exp-bullets li {
+      color: var(--muted); font-size: 0.88rem; line-height: 1.75;
+      padding-left: 1.2rem; position: relative; margin-bottom: 0.3rem;
+    }
+    .exp-bullets li::before {
+      content: '▸'; position: absolute; left: 0; color: var(--accent); font-size: 0.7rem; top: 0.25rem;
+    }
+
+    /* EDUCATION */
+    #education { background: var(--surface); }
+    .edu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.4rem; }
+    .edu-card {
+      padding: 2rem;
+      background: var(--surface2); border: 1px solid var(--border);
+      border-radius: 5px; transition: border-color 0.3s, transform 0.3s;
+    }
+    .edu-card:hover { border-color: var(--accent); transform: translateY(-3px); }
+    .edu-year { font-size: 0.7rem; color: var(--accent); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 0.8rem; }
+    .edu-card h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; margin-bottom: 0.5rem; }
+    .edu-card p { color: var(--muted); font-size: 0.82rem; line-height: 1.65; }
+
+    /* PROJECTS */
+    #projects { background: var(--bg); }
+    .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; }
+    .proj-card {
+      padding: 2.2rem;
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 5px; position: relative; overflow: hidden;
+      transition: border-color 0.3s, transform 0.3s;
+    }
+    .proj-card::after {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+      transform: scaleX(0); transform-origin: left; transition: transform 0.4s;
+    }
+    .proj-card:hover::after { transform: scaleX(1); }
+    .proj-card:hover { border-color: var(--accent); transform: translateY(-4px); }
+    .proj-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.8rem; font-weight: 700; color: var(--border); line-height: 1; margin-bottom: 1rem;
+    }
+    .proj-tag {
+      display: inline-block; padding: 0.2rem 0.7rem;
+      background: var(--surface2); border: 1px solid var(--border);
+      border-radius: 100px; font-size: 0.7rem; color: var(--accent);
+      margin-bottom: 0.8rem;
+    }
+    .proj-card h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; margin-bottom: 0.7rem; color: var(--accent2); }
+    .proj-card p { color: var(--muted); font-size: 0.85rem; line-height: 1.72; }
+
+    /* CONTACT */
+    #contact { background: var(--surface); }
+    .contact-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; }
+    .contact-left p { color: var(--muted); font-size: 0.97rem; line-height: 1.85; margin-bottom: 2rem; }
+    .contact-items { display: flex; flex-direction: column; gap: 1rem; }
+    .contact-item {
+      display: flex; align-items: center; gap: 1rem;
+      padding: 1.1rem 1.4rem;
+      background: var(--surface2); border: 1px solid var(--border);
+      border-radius: 4px; text-decoration: none; color: var(--text);
+      font-size: 0.88rem; transition: all 0.3s;
+    }
+    .contact-item:hover { border-color: var(--accent); color: var(--accent2); }
+    .contact-item svg { width: 17px; height: 17px; color: var(--accent); flex-shrink: 0; }
+    .contact-item span { color: var(--muted); font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; margin-right: 0.5rem; }
+    .contact-right h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; margin-bottom: 1.5rem; color: var(--accent2); }
+    .social-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem; }
+    .social-card {
+      padding: 1rem 1.2rem;
+      background: var(--surface2); border: 1px solid var(--border);
+      border-radius: 4px; text-decoration: none; color: var(--text);
+      font-size: 0.82rem; transition: all 0.3s; display: flex; align-items: center; gap: 0.6rem;
+    }
+    .social-card:hover { border-color: var(--accent); color: var(--accent2); }
+    .social-card svg { width: 15px; height: 15px; color: var(--accent); flex-shrink: 0; }
+
+    /* FOOTER */
+    footer {
+      padding: 1.8rem 4rem; background: var(--bg);
+      border-top: 1px solid var(--border);
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    footer p { color: var(--muted); font-size: 0.78rem; }
+    footer span { color: var(--accent); }
+
+    /* ANIMATIONS */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(28px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .hero-content > * { animation: fadeUp 0.9s ease forwards; opacity: 0; }
+    .hero-eyebrow { animation-delay: 0.1s; }
+    h1             { animation-delay: 0.25s; }
+    .hero-tagline  { animation-delay: 0.4s; }
+    .cta-row       { animation-delay: 0.55s; }
+    .socials-row   { animation-delay: 0.7s; }
+
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
+      nav { padding: 1rem 2rem; }
+      section { padding: 4rem 2rem; }
+      .hero { padding: 7rem 2rem 3rem; }
+      .about-wrap, .contact-wrap { grid-template-columns: 1fr; gap: 3rem; }
+      .exp-item { grid-template-columns: 1fr; gap: 0.8rem; }
+      footer { flex-direction: column; gap: 0.5rem; text-align: center; }
+    }
+    @media (max-width: 600px) {
+      .nav-links { display: none; }
+      h1 { font-size: 3.2rem; }
+      .social-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Maureen Wanjiku</div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">Data Analyst &nbsp;·&nbsp; Business Intelligence &nbsp;·&nbsp; Nairobi, Kenya</div>
+    <h1>Maureen<br/><em>Wanjiku</em></h1>
+    <p class="hero-tagline">
+      Results-driven <strong>Data Analyst & Business Intelligence professional</strong> with 4+ years of experience turning raw data into decisions that move businesses forward — through dashboards, automation, and actionable insights.
+    </p>
+    <div class="cta-row">
+      <a href="#projects" class="btn btn-primary">View My Work</a>
+      <a href="#contact" class="btn btn-outline">Get In Touch</a>
+    </div>
+    <div class="socials-row">
+      <span>Find me</span>
+      <a href="https://www.linkedin.com/in/maureen-wanjiku-mwangi/" target="_blank" class="soc">LinkedIn</a>
+      <a href="https://github.com/Maureenshiko" target="_blank" class="soc">GitHub</a>
+      <a href="https://public.tableau.com/app/profile/maureen.wanjiku/viz" target="_blank" class="soc">Tableau</a>
+      <a href="https://www.datascienceportfol.io/maureenshimwa" target="_blank" class="soc">DS Portfolio</a>
+      <a href="https://x.com/maurynshikoh46" target="_blank" class="soc">X / Twitter</a>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-wrap">
+    <div class="about-copy">
+      <div class="label">About Me</div>
+      <h2>Translating Data Into <em>Impact</em></h2>
+      <p>
+        I am a <strong>Results-driven Data Analyst and Business Intelligence professional</strong> with 4+ years of combined experience in data analysis, IT support, and business operations.
+      </p>
+      <p>
+        I specialise in building dashboards, automating reports, managing inventory systems, and deriving actionable insights from data using <strong>Excel, Power BI, and ERP platforms</strong>. I'm adept at translating business needs into data-driven solutions that improve efficiency and profitability.
+      </p>
+      <p>
+        I'm passionate about using data as a tool of <strong>economic empowerment</strong> — particularly for women-owned businesses. I'm open to data analysis projects, Women in STEM speaking opportunities, and mentoring the next generation of analysts.
+      </p>
+    </div>
+    <div>
+      <div class="stats-grid">
+        <div class="stat">
+          <div class="stat-n">4+</div>
+          <div class="stat-l">Years combined data & BI experience</div>
+        </div>
+        <div class="stat">
+          <div class="stat-n">30%</div>
+          <div class="stat-l">Profitability improvement through inventory analytics</div>
+        </div>
+        <div class="stat">
+          <div class="stat-n">1000+</div>
+          <div class="stat-l">Student records analysed via Power BI dashboards</div>
+        </div>
+        <div class="stat">
+          <div class="stat-n">15%</div>
+          <div class="stat-l">Customer base growth through purchasing trend analysis</div>
+        </div>
+      </div>
+      <div class="skills-section">
+        <h3>Core Skills</h3>
+        <div class="skill-groups">
+          <div>
+            <div class="skill-group-label">Data & Analytics</div>
+            <div class="tags">
+              <span class="tag">Microsoft Excel (Advanced)</span>
+              <span class="tag">Power BI</span>
+              <span class="tag">Dashboard Development</span>
+              <span class="tag">Data Visualization</span>
+              <span class="tag">Data Entry</span>
+            </div>
+          </div>
+          <div>
+            <div class="skill-group-label">Systems & Tools</div>
+            <div class="tags">
+              <span class="tag">ERP Systems</span>
+              <span class="tag">Zuku Broad Hub</span>
+              <span class="tag">WordPress</span>
+              <span class="tag">OS Ticket</span>
+              <span class="tag">PHP</span>
+              <span class="tag">JavaScript</span>
+            </div>
+          </div>
+          <div>
+            <div class="skill-group-label">Business & IT</div>
+            <div class="tags">
+              <span class="tag">Inventory Management</span>
+              <span class="tag">Sales Analysis</span>
+              <span class="tag">Customer Trend Analysis</span>
+              <span class="tag">IT Support</span>
+              <span class="tag">System Administration</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="label">Work History</div>
+  <h2>Experience</h2>
+  <div class="exp-list">
+
+    <div class="exp-item">
+      <div class="exp-meta">
+        <div class="exp-company">Maasai Mara University</div>
+        <div class="exp-period">2026 – Present</div>
+        <div class="exp-location">Kenya</div>
+      </div>
+      <div>
+        <div class="exp-role">System Administrator / Data Analyst Intern</div>
+        <ul class="exp-bullets">
+          <li>Analyse 1,000+ bursary student records using Power BI, building reports and dashboards to support decision-making and funding allocation</li>
+          <li>Installed and configured OS Ticket helpdesk system for student use, improving support request management and data protection & governance</li>
+          <li>Provide IT support and troubleshoot hardware and software issues for university staff and students</li>
+          <li>Manage issuance and design of student and staff ID cards</li>
+          <li>Issue and configure email licences for students and staff</li>
+          <li>Set up and train staff on ERP systems to streamline administrative operations</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-meta">
+        <div class="exp-company">Kids Classic Collection</div>
+        <div class="exp-period">2023 – 2025</div>
+        <div class="exp-location">Nairobi, Kenya</div>
+      </div>
+      <div>
+        <div class="exp-role">Business Operations Assistant (Data Analyst)</div>
+        <ul class="exp-bullets">
+          <li>Analysed customer purchasing patterns, sales trends, and preferences using Excel, resulting in a 15% increase in customer base</li>
+          <li>Implemented inventory management strategies and pricing decisions that improved profitability by 30%</li>
+          <li>Built interactive Excel dashboards to track shop performance and identify top-selling products</li>
+          <li>Monitored stock levels and supplier costs using Excel, reducing overstocking by 20%</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-meta">
+        <div class="exp-company">Ministry of ICT & The Digital Economy</div>
+        <div class="exp-period">2022 – 2023</div>
+        <div class="exp-location">Nairobi, Kenya</div>
+      </div>
+      <div>
+        <div class="exp-role">ICT Technical Support Attachee</div>
+        <ul class="exp-bullets">
+          <li>Provided hardware and software troubleshooting support for 50+ government users</li>
+          <li>Designed, developed, and maintained WordPress websites for the organisation</li>
+          <li>Installed and configured ERP systems, supporting digital transformation of operations</li>
+          <li>Performed accurate data entry, documentation, and inventory tracking to maintain organised records</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-meta">
+        <div class="exp-company">Detrix Communication</div>
+        <div class="exp-period">2021 – 2022</div>
+        <div class="exp-location">Nairobi, Kenya</div>
+      </div>
+      <div>
+        <div class="exp-role">Intern → Warehouse Supervisor</div>
+        <div class="exp-note">Started as an Attachee in team supervision and petty cash management, then promoted to Warehouse Supervisor.</div>
+        <ul class="exp-bullets">
+          <li>Performed data analysis on team performance and job scope metrics to support operational decision-making</li>
+          <li>Supervised teams and managed petty cash, ensuring accountability and accurate financial records</li>
+          <li>Automated material reconciliation reports in Excel, reducing manual errors by 30%</li>
+          <li>Managed 100+ site installation records via Zuku Broad Hub System for inventory tracking</li>
+          <li>Processed 50+ daily installation records in Excel, achieving 100% compliance with monthly reporting deadlines</li>
+          <li>Contributed to a 15% reduction in material waste through accurate data entry and reconciliation</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education">
+  <div class="label">Academics</div>
+  <h2>Education & <em>Certifications</em></h2>
+  <div class="edu-grid">
+    <div class="edu-card">
+      <div class="edu-year">2018 – 2022 · GPA 3.14</div>
+      <h3>Kenya Methodist University</h3>
+      <p>Bachelor of Business with Information Technology — Second Class Upper Division. Strong foundation in business operations, IT, and systems management.</p>
+    </div>
+    <div class="edu-card">
+      <div class="edu-year">In Progress</div>
+      <h3>ALX Africa</h3>
+      <p>Data Analyst Programme — Building advanced analytical skills, real-world data competencies, and industry-ready capabilities.</p>
+    </div>
+    <div class="edu-card">
+      <div class="edu-year">2022 · Simplilearn</div>
+      <h3>Fundamentals of Business Intelligence</h3>
+      <p>Online certification covering core BI concepts, tools, and data-driven decision-making frameworks.</p>
+    </div>
+    <div class="edu-card">
+      <div class="edu-year">NIBS College</div>
+      <h3>ICDL Certification</h3>
+      <p>Microsoft Excel and Word — International Computer Driving Licence demonstrating proficiency in core Microsoft Office applications.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="label">Portfolio</div>
+  <h2>Featured <em>Projects</em></h2>
+  <div class="projects-grid">
+
+    <div class="proj-card">
+      <div class="proj-num">01</div>
+      <span class="proj-tag">Power BI · 2026</span>
+      <h3>Bursary Student Data Analysis Dashboard</h3>
+      <p>Developed Power BI dashboards to analyse bursary student data at Maasai Mara University, enabling data-driven decisions on funding allocation and eligibility tracking across 1,000+ student records.</p>
+    </div>
+
+    <div class="proj-card">
+      <div class="proj-num">02</div>
+      <span class="proj-tag">Mobile & Web · 2025</span>
+      <h3>Pori Alert — Wildlife Sighting App</h3>
+      <p>Collaborating on the design and development of a mobile and web-based app enabling citizens to report wildlife sightings in human-populated areas, with real-time alerts to authorities — even offline.</p>
+    </div>
+
+    <div class="proj-card">
+      <div class="proj-num">03</div>
+      <span class="proj-tag">Excel · 2023 – 2024</span>
+      <h3>Sales & Inventory Dashboard</h3>
+      <p>Built interactive dashboards using Excel to track retail shop performance, identify top-selling products, and support stock and pricing decisions — contributing to a 30% profitability improvement.</p>
+    </div>
+
+    <div class="proj-card">
+      <div class="proj-num">04</div>
+      <span class="proj-tag">PHP · JavaScript · 2022</span>
+      <h3>Rental Management System</h3>
+      <p>Developed a system to track vacant apartments and automatically generate tenant invoices, reducing manual administrative work and improving accuracy for property managers.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-wrap">
+    <div class="contact-left">
+      <div class="label">Let's Connect</div>
+      <h2>Get In <em>Touch</em></h2>
+      <p>
+        I'm open to data analysis roles, Business Intelligence projects, Women in STEM speaking opportunities, and mentoring aspiring analysts. Let's build something meaningful with data.
+      </p>
+      <div class="contact-items">
+        <a href="mailto:maureenshimwa@gmail.com" class="contact-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          <span>Email</span> maureenshimwa@gmail.com
+        </a>
+        <a href="tel:+254740442225" class="contact-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.4 2 2 0 0 1 3.6 1.22h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.81a16 16 0 0 0 6.29 6.29l.95-.94a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          <span>Phone</span> +254 740 442 225
+        </a>
+        <a href="https://www.linkedin.com/in/maureen-wanjiku-mwangi/" target="_blank" class="contact-item">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+          <span>LinkedIn</span> maureen-wanjiku-mwangi
+        </a>
+      </div>
+    </div>
+    <div class="contact-right">
+      <h3>More Links</h3>
+      <div class="social-grid">
+        <a href="https://github.com/Maureenshiko" target="_blank" class="social-card">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+          GitHub
+        </a>
+        <a href="https://public.tableau.com/app/profile/maureen.wanjiku/viz" target="_blank" class="social-card">
+          <svg viewBox="0 0 24 24" fill="currentColor"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+          Tableau
+        </a>
+        <a href="https://www.datascienceportfol.io/maureenshimwa" target="_blank" class="social-card">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+          DS Portfolio
+        </a>
+        <a href="https://x.com/maurynshikoh46" target="_blank" class="social-card">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          X / Twitter
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2026 <span>Maureen Wanjiku Mwangi</span>. All rights reserved.</p>
+  <p>Data Analyst · Nairobi, Kenya · Hosted on <span>Vercel</span></p>
+</footer>
+
+</body>
+</html>
