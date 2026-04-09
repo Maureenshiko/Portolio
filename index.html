@@ -4,293 +4,350 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Maureen Wanjiku — Data Analyst</title>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --bg:        #04080f;
-      --surface:   #0a1628;
-      --surface2:  #0f1f3d;
-      --surface3:  #162847;
-      --accent:    #5b9bd5;
-      --accent2:   #89bfe8;
-      --text:      #e8edf5;
-      --muted:     #7a8fa8;
-      --border:    rgba(91,155,213,0.18);
-      --border2:   rgba(91,155,213,0.08);
+      --bg:        #ffffff;
+      --surface:   #f0fafa;
+      --surface2:  #e8fafa;
+      --surface3:  #d0f0f0;
+      --teal-dark: #0d4f4f;
+      --teal-mid:  #1a7a7a;
+      --teal:      #2aadad;
+      --teal-light:#5ecece;
+      --teal-pale: #a8eaea;
+      --teal-ghost:#e8fafa;
+      --text:      #0f1f1f;
+      --muted:     #4a6a6a;
+      --light:     #7a9a9a;
+      --border:    rgba(13,79,79,0.15);
+      --border2:   rgba(13,79,79,0.07);
+      --shadow:    0 4px 24px rgba(13,79,79,0.10);
     }
 
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
     html { scroll-behavior: smooth; }
 
     body {
-      font-family: 'Inter', sans-serif;
+      font-family: 'DM Sans', sans-serif;
       background: var(--bg);
       color: var(--text);
       overflow-x: hidden;
     }
 
-    /* NAV */
+    /* ── NAV ── */
     nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 100;
       display: flex; justify-content: space-between; align-items: center;
-      padding: 1.1rem 4rem;
-      background: rgba(4,8,15,0.88);
-      backdrop-filter: blur(16px);
+      padding: 1.1rem 5rem;
+      background: rgba(255,255,255,0.93);
+      backdrop-filter: blur(14px);
       border-bottom: 1px solid var(--border);
     }
     .nav-logo {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.4rem; font-weight: 600;
-      color: var(--accent); letter-spacing: 0.06em;
+      font-family: 'Lora', serif;
+      font-size: 1.25rem; font-weight: 700;
+      color: var(--teal-dark); letter-spacing: 0.02em;
     }
-    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+    .nav-links { display: flex; gap: 2.5rem; list-style: none; align-items: center; }
     .nav-links a {
       color: var(--muted); text-decoration: none;
-      font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase;
+      font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 500;
       transition: color 0.3s;
     }
-    .nav-links a:hover { color: var(--accent2); }
+    .nav-links a:hover { color: var(--teal-dark); }
+    .nav-resume {
+      padding: 0.5rem 1.2rem;
+      background: var(--teal-dark); color: #fff !important;
+      border-radius: 4px; font-size: 0.75rem !important;
+      letter-spacing: 0.1em; font-weight: 600 !important;
+      transition: background 0.3s !important;
+    }
+    .nav-resume:hover { background: var(--teal-mid) !important; }
 
-    /* HERO */
+    /* ── HERO ── */
     .hero {
       min-height: 100vh;
-      display: flex; flex-direction: column; justify-content: center;
-      padding: 8rem 4rem 4rem;
+      display: grid; grid-template-columns: 1fr 1fr;
+      align-items: center;
+      padding: 8rem 5rem 5rem;
       position: relative; overflow: hidden;
+      gap: 4rem;
+      background: var(--bg);
     }
-    .hero-bg {
-      position: absolute; inset: 0; pointer-events: none;
-      background:
-        radial-gradient(ellipse 60% 50% at 80% 30%, rgba(15,31,61,0.9) 0%, transparent 70%),
-        radial-gradient(ellipse 40% 60% at 10% 80%, rgba(91,155,213,0.07) 0%, transparent 60%);
+    .hero-deco {
+      position: absolute; top: 0; right: 0;
+      width: 48%; height: 100%;
+      background: var(--teal-ghost);
+      clip-path: polygon(12% 0%, 100% 0%, 100% 100%, 0% 100%);
+      z-index: 0;
     }
-    .hero-grid {
-      position: absolute; inset: 0; pointer-events: none;
-      background-image:
-        linear-gradient(var(--border2) 1px, transparent 1px),
-        linear-gradient(90deg, var(--border2) 1px, transparent 1px);
-      background-size: 60px 60px;
-      mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 30%, transparent 100%);
+    .hero-deco-circle {
+      position: absolute; bottom: -80px; left: -80px;
+      width: 320px; height: 320px; border-radius: 50%;
+      border: 40px solid var(--surface3);
+      z-index: 0; opacity: 0.4;
     }
-    .hero-content { position: relative; z-index: 1; }
+    .hero-left { position: relative; z-index: 1; }
     .hero-eyebrow {
       display: inline-flex; align-items: center; gap: 0.8rem;
-      color: var(--accent); font-size: 0.75rem; letter-spacing: 0.25em;
-      text-transform: uppercase; margin-bottom: 1.6rem; font-weight: 500;
+      color: var(--teal-mid); font-size: 0.72rem; letter-spacing: 0.25em;
+      text-transform: uppercase; margin-bottom: 1.4rem; font-weight: 600;
     }
-    .hero-eyebrow::before { content: ''; width: 32px; height: 1px; background: var(--accent); }
+    .hero-eyebrow::before { content: ''; width: 28px; height: 2px; background: var(--teal-mid); border-radius: 2px; }
     h1 {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(3.8rem, 9vw, 7.5rem);
-      font-weight: 700; line-height: 0.95;
-      margin-bottom: 1.2rem;
+      font-family: 'Lora', serif;
+      font-size: clamp(3.2rem, 6vw, 5.5rem);
+      font-weight: 700; line-height: 1.05;
+      margin-bottom: 1.2rem; color: var(--text);
     }
-    h1 em { font-style: italic; color: var(--accent2); }
+    h1 em { font-style: italic; color: var(--teal-dark); }
     .hero-tagline {
-      max-width: 560px; color: var(--muted);
-      font-size: 1rem; line-height: 1.8; margin-bottom: 2.5rem;
+      max-width: 480px; color: var(--muted);
+      font-size: 1rem; line-height: 1.8; margin-bottom: 2.2rem;
     }
-    .hero-tagline strong { color: var(--text); font-weight: 500; }
-    .cta-row { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .hero-tagline strong { color: var(--text); font-weight: 600; }
+    .cta-row { display: flex; gap: 1rem; flex-wrap: wrap; align-items: center; }
     .btn {
-      padding: 0.8rem 2rem; border-radius: 3px;
-      font-family: 'Inter', sans-serif; font-size: 0.78rem;
-      font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
-      text-decoration: none; cursor: pointer; display: inline-block;
-      transition: all 0.3s;
+      padding: 0.85rem 2rem; border-radius: 4px;
+      font-family: 'DM Sans', sans-serif; font-size: 0.8rem;
+      font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase;
+      text-decoration: none; cursor: pointer; display: inline-flex;
+      align-items: center; gap: 0.5rem; transition: all 0.3s;
     }
-    .btn-primary { background: var(--accent); color: var(--bg); border: 2px solid var(--accent); }
-    .btn-primary:hover { background: var(--accent2); border-color: var(--accent2); }
-    .btn-outline { background: transparent; color: var(--accent); border: 2px solid var(--border); }
-    .btn-outline:hover { border-color: var(--accent); }
+    .btn-primary { background: var(--teal-dark); color: #fff; border: 2px solid var(--teal-dark); }
+    .btn-primary:hover { background: var(--teal-mid); border-color: var(--teal-mid); }
+    .btn-outline { background: transparent; color: var(--teal-dark); border: 2px solid var(--border); }
+    .btn-outline:hover { border-color: var(--teal-dark); background: var(--teal-ghost); }
+    .btn-resume { background: transparent; color: var(--teal); border: 2px solid var(--teal-pale); }
+    .btn-resume:hover { background: var(--teal-ghost); border-color: var(--teal); }
+    .btn svg { width: 15px; height: 15px; }
+
     .socials-row {
-      display: flex; gap: 0.8rem; flex-wrap: wrap;
-      margin-top: 3rem; align-items: center;
+      display: flex; gap: 0.7rem; flex-wrap: wrap;
+      margin-top: 2rem; align-items: center;
     }
     .socials-row span {
-      font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase;
-      color: var(--muted); margin-right: 0.4rem;
+      font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--light); margin-right: 0.3rem;
     }
     .soc {
-      color: var(--muted); text-decoration: none; font-size: 0.75rem;
-      padding: 0.35rem 0.9rem;
-      border: 1px solid var(--border); border-radius: 2px; transition: all 0.3s;
+      color: var(--muted); text-decoration: none; font-size: 0.74rem; font-weight: 500;
+      padding: 0.3rem 0.8rem;
+      border: 1px solid var(--border); border-radius: 3px; transition: all 0.3s;
     }
-    .soc:hover { color: var(--accent2); border-color: var(--accent); }
+    .soc:hover { color: var(--teal-dark); border-color: var(--teal-dark); background: var(--teal-ghost); }
 
-    /* SECTIONS */
-    section { padding: 6rem 4rem; }
+    /* hero right card */
+    .hero-right { position: relative; z-index: 1; }
+    .hero-card {
+      background: #fff;
+      border-radius: 16px;
+      padding: 2.5rem;
+      box-shadow: var(--shadow), 0 1px 3px rgba(0,0,0,0.05);
+      border: 1px solid var(--border);
+    }
+    .hero-card-label {
+      font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--teal-mid); font-weight: 600; margin-bottom: 1.5rem;
+    }
+    .hero-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1.8rem; }
+    .hstat {
+      padding: 1.2rem; background: var(--surface); border-radius: 10px;
+      border: 1px solid var(--border2);
+    }
+    .hstat-n {
+      font-family: 'Lora', serif;
+      font-size: 2rem; font-weight: 700; color: var(--teal-dark); line-height: 1;
+    }
+    .hstat-l { font-size: 0.72rem; color: var(--muted); margin-top: 0.3rem; line-height: 1.4; }
+    .hero-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+    .htag {
+      padding: 0.3rem 0.85rem;
+      background: var(--teal-ghost); border: 1px solid var(--teal-pale);
+      border-radius: 100px; font-size: 0.74rem; color: var(--teal-dark); font-weight: 500;
+    }
+
+    /* ── SECTIONS ── */
+    section { padding: 6rem 5rem; }
     .label {
-      display: inline-flex; align-items: center; gap: 0.8rem;
-      color: var(--accent); font-size: 0.72rem; letter-spacing: 0.22em;
-      text-transform: uppercase; font-weight: 600; margin-bottom: 0.8rem;
+      display: inline-flex; align-items: center; gap: 0.7rem;
+      color: var(--teal-mid); font-size: 0.7rem; letter-spacing: 0.22em;
+      text-transform: uppercase; font-weight: 700; margin-bottom: 0.7rem;
     }
-    .label::after { content: ''; width: 40px; height: 1px; background: var(--accent); }
+    .label::before { content: ''; width: 20px; height: 2px; background: var(--teal-mid); border-radius: 2px; }
     h2 {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(2rem, 4vw, 3.2rem);
-      font-weight: 700; line-height: 1.1; margin-bottom: 3rem;
+      font-family: 'Lora', serif;
+      font-size: clamp(1.9rem, 3.5vw, 3rem);
+      font-weight: 700; line-height: 1.15; margin-bottom: 3rem; color: var(--text);
     }
-    h2 em { font-style: italic; color: var(--accent2); }
+    h2 em { font-style: italic; color: var(--teal-dark); }
 
-    /* ABOUT */
+    /* ── ABOUT ── */
     #about { background: var(--surface); }
     .about-wrap { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 5rem; align-items: start; }
     .about-copy p { color: var(--muted); line-height: 1.9; margin-bottom: 1.1rem; font-size: 0.97rem; }
-    .about-copy p strong { color: var(--text); font-weight: 500; }
-    .stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; margin-bottom: 2rem; }
-    .stat {
-      padding: 1.4rem 1.6rem;
-      background: var(--surface2); border: 1px solid var(--border); border-radius: 4px;
+    .about-copy p strong { color: var(--text); font-weight: 600; }
+    .highlight-box {
+      margin-top: 1.5rem; padding: 1.4rem 1.8rem;
+      background: var(--teal-ghost); border-left: 3px solid var(--teal);
+      border-radius: 0 8px 8px 0;
     }
-    .stat-n {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 2.6rem; font-weight: 700; color: var(--accent); line-height: 1;
-    }
-    .stat-l { font-size: 0.75rem; color: var(--muted); margin-top: 0.3rem; line-height: 1.4; }
+    .highlight-box p { color: var(--teal-dark); font-size: 0.92rem; margin: 0; font-weight: 500; }
+
     .skills-section h3 {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.25rem; color: var(--accent2); margin-bottom: 1.2rem;
+      font-family: 'Lora', serif;
+      font-size: 1.2rem; color: var(--text); margin-bottom: 1.3rem; font-weight: 600;
     }
-    .skill-groups { display: flex; flex-direction: column; gap: 1rem; }
+    .skill-groups { display: flex; flex-direction: column; gap: 1.2rem; }
     .skill-group-label {
-      font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase;
-      color: var(--accent); margin-bottom: 0.5rem; font-weight: 600;
+      font-size: 0.68rem; letter-spacing: 0.15em; text-transform: uppercase;
+      color: var(--teal-mid); margin-bottom: 0.5rem; font-weight: 700;
     }
     .tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
     .tag {
-      padding: 0.3rem 0.9rem;
-      background: var(--surface3); border: 1px solid var(--border);
-      border-radius: 100px; font-size: 0.76rem; color: var(--text);
+      padding: 0.32rem 0.9rem;
+      background: #fff; border: 1px solid var(--border);
+      border-radius: 100px; font-size: 0.76rem; color: var(--text); font-weight: 500;
     }
 
-    /* EXPERIENCE */
-    #experience { background: var(--bg); }
-    .exp-list { display: flex; flex-direction: column; max-width: 860px; }
+    /* ── EXPERIENCE ── */
+    #experience { background: #fff; }
+    .exp-list { display: flex; flex-direction: column; max-width: 880px; }
     .exp-item {
-      display: grid; grid-template-columns: 220px 1fr;
-      border-top: 1px solid var(--border2);
+      display: grid; grid-template-columns: 210px 1fr;
+      border-top: 1px solid var(--border);
       padding: 2.5rem 0; gap: 3rem;
     }
-    .exp-item:last-child { border-bottom: 1px solid var(--border2); }
-    .exp-company { font-weight: 600; color: var(--accent2); font-size: 0.88rem; line-height: 1.4; }
-    .exp-period { font-size: 0.72rem; color: var(--muted); margin-top: 0.3rem; }
-    .exp-location { font-size: 0.72rem; color: var(--muted); margin-top: 0.2rem; }
-    .exp-role {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.25rem; font-weight: 600; margin-bottom: 0.8rem;
+    .exp-item:last-child { border-bottom: 1px solid var(--border); }
+    .exp-company { font-weight: 700; color: var(--teal-dark); font-size: 0.88rem; line-height: 1.5; }
+    .exp-period {
+      display: inline-block; margin-top: 0.4rem;
+      font-size: 0.7rem; color: #fff; background: var(--teal-mid);
+      padding: 0.15rem 0.6rem; border-radius: 100px; font-weight: 600;
     }
-    .exp-note { font-size: 0.82rem; color: var(--accent); font-style: italic; margin-bottom: 0.8rem; }
+    .exp-location { font-size: 0.72rem; color: var(--light); margin-top: 0.4rem; }
+    .exp-role {
+      font-family: 'Lora', serif;
+      font-size: 1.2rem; font-weight: 600; margin-bottom: 0.7rem; color: var(--text);
+    }
+    .exp-note { font-size: 0.82rem; color: var(--teal-mid); font-style: italic; margin-bottom: 0.8rem; }
     .exp-bullets { list-style: none; }
     .exp-bullets li {
-      color: var(--muted); font-size: 0.88rem; line-height: 1.75;
+      color: var(--muted); font-size: 0.88rem; line-height: 1.8;
       padding-left: 1.2rem; position: relative; margin-bottom: 0.3rem;
     }
     .exp-bullets li::before {
-      content: '▸'; position: absolute; left: 0; color: var(--accent); font-size: 0.7rem; top: 0.25rem;
+      content: ''; position: absolute; left: 0; top: 0.65em;
+      width: 5px; height: 5px; border-radius: 50%; background: var(--teal);
     }
 
-    /* EDUCATION */
+    /* ── EDUCATION ── */
     #education { background: var(--surface); }
-    .edu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.4rem; }
+    .edu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; }
     .edu-card {
-      padding: 2rem;
-      background: var(--surface2); border: 1px solid var(--border);
-      border-radius: 5px; transition: border-color 0.3s, transform 0.3s;
+      padding: 2rem; background: #fff; border: 1px solid var(--border);
+      border-radius: 12px; transition: all 0.3s; position: relative; overflow: hidden;
     }
-    .edu-card:hover { border-color: var(--accent); transform: translateY(-3px); }
-    .edu-year { font-size: 0.7rem; color: var(--accent); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 0.8rem; }
-    .edu-card h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; margin-bottom: 0.5rem; }
+    .edu-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+      background: linear-gradient(90deg, var(--teal-dark), var(--teal-light));
+      transform: scaleX(0); transform-origin: left; transition: transform 0.3s;
+    }
+    .edu-card:hover::before { transform: scaleX(1); }
+    .edu-card:hover { transform: translateY(-3px); box-shadow: var(--shadow); }
+    .edu-year { font-size: 0.69rem; color: var(--teal-mid); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 0.8rem; font-weight: 600; }
+    .edu-card h3 { font-family: 'Lora', serif; font-size: 1.05rem; margin-bottom: 0.5rem; font-weight: 600; }
     .edu-card p { color: var(--muted); font-size: 0.82rem; line-height: 1.65; }
 
-    /* PROJECTS */
-    #projects { background: var(--bg); }
+    /* ── PROJECTS ── */
+    #projects { background: #fff; }
     .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; }
     .proj-card {
-      padding: 2.2rem;
-      background: var(--surface); border: 1px solid var(--border);
-      border-radius: 5px; position: relative; overflow: hidden;
-      transition: border-color 0.3s, transform 0.3s;
+      padding: 2.2rem; background: var(--surface); border: 1px solid var(--border);
+      border-radius: 12px; position: relative; overflow: hidden;
+      transition: all 0.3s;
     }
-    .proj-card::after {
-      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
-      background: linear-gradient(90deg, var(--accent), var(--accent2));
-      transform: scaleX(0); transform-origin: left; transition: transform 0.4s;
-    }
-    .proj-card:hover::after { transform: scaleX(1); }
-    .proj-card:hover { border-color: var(--accent); transform: translateY(-4px); }
+    .proj-card:hover { transform: translateY(-5px); box-shadow: var(--shadow); border-color: var(--teal-light); }
     .proj-num {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 2.8rem; font-weight: 700; color: var(--border); line-height: 1; margin-bottom: 1rem;
+      font-family: 'Lora', serif;
+      font-size: 3rem; font-weight: 700; color: var(--teal-pale); line-height: 1; margin-bottom: 1rem;
     }
     .proj-tag {
-      display: inline-block; padding: 0.2rem 0.7rem;
-      background: var(--surface2); border: 1px solid var(--border);
-      border-radius: 100px; font-size: 0.7rem; color: var(--accent);
-      margin-bottom: 0.8rem;
+      display: inline-block; padding: 0.22rem 0.75rem;
+      background: var(--teal-ghost); border: 1px solid var(--teal-pale);
+      border-radius: 100px; font-size: 0.7rem; color: var(--teal-dark);
+      margin-bottom: 0.8rem; font-weight: 600;
     }
-    .proj-card h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; margin-bottom: 0.7rem; color: var(--accent2); }
-    .proj-card p { color: var(--muted); font-size: 0.85rem; line-height: 1.72; }
+    .proj-card h3 { font-family: 'Lora', serif; font-size: 1.15rem; margin-bottom: 0.7rem; color: var(--text); font-weight: 600; }
+    .proj-card p { color: var(--muted); font-size: 0.85rem; line-height: 1.75; }
 
-    /* CONTACT */
-    #contact { background: var(--surface); }
+    /* ── CONTACT ── */
+    #contact { background: var(--teal-dark); }
+    #contact .label { color: var(--teal-pale); }
+    #contact .label::before { background: var(--teal-pale); }
+    #contact h2 { color: #fff; }
+    #contact h2 em { color: var(--teal-light); }
     .contact-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; }
-    .contact-left p { color: var(--muted); font-size: 0.97rem; line-height: 1.85; margin-bottom: 2rem; }
+    .contact-left p { color: rgba(255,255,255,0.72); font-size: 0.97rem; line-height: 1.85; margin-bottom: 2rem; }
     .contact-items { display: flex; flex-direction: column; gap: 1rem; }
     .contact-item {
       display: flex; align-items: center; gap: 1rem;
       padding: 1.1rem 1.4rem;
-      background: var(--surface2); border: 1px solid var(--border);
-      border-radius: 4px; text-decoration: none; color: var(--text);
+      background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.18);
+      border-radius: 8px; text-decoration: none; color: #fff;
       font-size: 0.88rem; transition: all 0.3s;
     }
-    .contact-item:hover { border-color: var(--accent); color: var(--accent2); }
-    .contact-item svg { width: 17px; height: 17px; color: var(--accent); flex-shrink: 0; }
-    .contact-item span { color: var(--muted); font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; margin-right: 0.5rem; }
-    .contact-right h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; margin-bottom: 1.5rem; color: var(--accent2); }
+    .contact-item:hover { background: rgba(255,255,255,0.15); border-color: rgba(255,255,255,0.35); }
+    .contact-item svg { width: 17px; height: 17px; color: var(--teal-light); flex-shrink: 0; }
+    .contact-item span { color: rgba(255,255,255,0.45); font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; margin-right: 0.3rem; }
+    .contact-right h3 { font-family: 'Lora', serif; font-size: 1.5rem; margin-bottom: 1.5rem; color: #fff; }
     .social-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem; }
     .social-card {
       padding: 1rem 1.2rem;
-      background: var(--surface2); border: 1px solid var(--border);
-      border-radius: 4px; text-decoration: none; color: var(--text);
+      background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.18);
+      border-radius: 8px; text-decoration: none; color: rgba(255,255,255,0.85);
       font-size: 0.82rem; transition: all 0.3s; display: flex; align-items: center; gap: 0.6rem;
     }
-    .social-card:hover { border-color: var(--accent); color: var(--accent2); }
-    .social-card svg { width: 15px; height: 15px; color: var(--accent); flex-shrink: 0; }
+    .social-card:hover { background: rgba(255,255,255,0.15); color: #fff; }
+    .social-card svg { width: 15px; height: 15px; opacity: 0.7; flex-shrink: 0; }
 
-    /* FOOTER */
+    /* ── FOOTER ── */
     footer {
-      padding: 1.8rem 4rem; background: var(--bg);
-      border-top: 1px solid var(--border);
+      padding: 1.8rem 5rem; background: #072e2e;
       display: flex; justify-content: space-between; align-items: center;
     }
-    footer p { color: var(--muted); font-size: 0.78rem; }
-    footer span { color: var(--accent); }
+    footer p { color: rgba(255,255,255,0.35); font-size: 0.78rem; }
+    footer span { color: var(--teal-light); }
 
-    /* ANIMATIONS */
+    /* ── ANIMATIONS ── */
     @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(28px); }
+      from { opacity: 0; transform: translateY(24px); }
       to   { opacity: 1; transform: translateY(0); }
     }
-    .hero-content > * { animation: fadeUp 0.9s ease forwards; opacity: 0; }
-    .hero-eyebrow { animation-delay: 0.1s; }
-    h1             { animation-delay: 0.25s; }
+    .hero-left > * { animation: fadeUp 0.9s ease forwards; opacity: 0; }
+    .hero-eyebrow  { animation-delay: 0.1s; }
+    .hero-left h1  { animation-delay: 0.25s; }
     .hero-tagline  { animation-delay: 0.4s; }
-    .cta-row       { animation-delay: 0.55s; }
-    .socials-row   { animation-delay: 0.7s; }
+    .cta-row       { animation-delay: 0.5s; }
+    .socials-row   { animation-delay: 0.65s; }
+    .hero-right    { animation: fadeUp 1s ease 0.35s forwards; opacity: 0; }
 
-    /* RESPONSIVE */
-    @media (max-width: 900px) {
-      nav { padding: 1rem 2rem; }
-      section { padding: 4rem 2rem; }
-      .hero { padding: 7rem 2rem 3rem; }
+    /* ── RESPONSIVE ── */
+    @media (max-width: 1024px) {
+      .hero { grid-template-columns: 1fr; padding: 8rem 3rem 4rem; }
+      .hero-deco, .hero-deco-circle { display: none; }
+      nav { padding: 1rem 3rem; }
+      section { padding: 4.5rem 3rem; }
+    }
+    @media (max-width: 768px) {
+      nav { padding: 1rem 1.5rem; }
+      .nav-links { display: none; }
+      section { padding: 4rem 1.5rem; }
+      .hero { padding: 7rem 1.5rem 3rem; }
       .about-wrap, .contact-wrap { grid-template-columns: 1fr; gap: 3rem; }
       .exp-item { grid-template-columns: 1fr; gap: 0.8rem; }
-      footer { flex-direction: column; gap: 0.5rem; text-align: center; }
-    }
-    @media (max-width: 600px) {
-      .nav-links { display: none; }
-      h1 { font-size: 3.2rem; }
+      footer { flex-direction: column; gap: 0.5rem; text-align: center; padding: 1.5rem; }
       .social-grid { grid-template-columns: 1fr; }
     }
   </style>
@@ -306,30 +363,71 @@
     <li><a href="#education">Education</a></li>
     <li><a href="#projects">Projects</a></li>
     <li><a href="#contact">Contact</a></li>
+    <li><a href="https://drive.google.com/file/d/1xGBHU5HZ6kuTUFdojLbrB5Jhk9VmR-4I/view?usp=sharing" target="_blank" class="nav-resume">View Resume</a></li>
   </ul>
 </nav>
 
 <!-- HERO -->
 <section class="hero" id="home">
-  <div class="hero-bg"></div>
-  <div class="hero-grid"></div>
-  <div class="hero-content">
-    <div class="hero-eyebrow">Data Analyst &nbsp;·&nbsp; Business Intelligence &nbsp;·&nbsp; Nairobi, Kenya</div>
-    <h1>Maureen<br/><em>Wanjiku</em></h1>
+  <div class="hero-deco"></div>
+  <div class="hero-deco-circle"></div>
+
+  <div class="hero-left">
+    <div class="hero-eyebrow">Data Analyst · Business Intelligence · Nairobi</div>
+    <h1>Maureen<br/><em>Wanjiku</em><br/>Mwangi</h1>
     <p class="hero-tagline">
-      Results-driven <strong>Data Analyst & Business Intelligence professional</strong> with 4+ years of experience turning raw data into decisions that move businesses forward — through dashboards, automation, and actionable insights.
+      Results-driven <strong>Data Analyst & BI professional</strong> with 4+ years of experience — building dashboards, automating reports, and turning raw data into decisions that drive real growth.
     </p>
     <div class="cta-row">
-      <a href="#projects" class="btn btn-primary">View My Work</a>
+      <a href="#projects" class="btn btn-primary">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>
+        View My Work
+      </a>
       <a href="#contact" class="btn btn-outline">Get In Touch</a>
+      <a href="https://drive.google.com/file/d/1xGBHU5HZ6kuTUFdojLbrB5Jhk9VmR-4I/view?usp=sharing" target="_blank" class="btn btn-resume">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+        View Resume
+      </a>
     </div>
     <div class="socials-row">
-      <span>Find me</span>
+      <span>Connect</span>
       <a href="https://www.linkedin.com/in/maureen-wanjiku-mwangi/" target="_blank" class="soc">LinkedIn</a>
       <a href="https://github.com/Maureenshiko" target="_blank" class="soc">GitHub</a>
       <a href="https://public.tableau.com/app/profile/maureen.wanjiku/viz" target="_blank" class="soc">Tableau</a>
       <a href="https://www.datascienceportfol.io/maureenshimwa" target="_blank" class="soc">DS Portfolio</a>
       <a href="https://x.com/maurynshikoh46" target="_blank" class="soc">X / Twitter</a>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <div class="hero-card">
+      <div class="hero-card-label">At a Glance</div>
+      <div class="hero-stats">
+        <div class="hstat">
+          <div class="hstat-n">4+</div>
+          <div class="hstat-l">Years of combined experience</div>
+        </div>
+        <div class="hstat">
+          <div class="hstat-n">30%</div>
+          <div class="hstat-l">Profitability improvement</div>
+        </div>
+        <div class="hstat">
+          <div class="hstat-n">1K+</div>
+          <div class="hstat-l">Records analysed via Power BI</div>
+        </div>
+        <div class="hstat">
+          <div class="hstat-n">4</div>
+          <div class="hstat-l">Major projects delivered</div>
+        </div>
+      </div>
+      <div class="hero-tags">
+        <span class="htag">Excel Advanced</span>
+        <span class="htag">Power BI</span>
+        <span class="htag">ERP Systems</span>
+        <span class="htag">Dashboards</span>
+        <span class="htag">IT Support</span>
+        <span class="htag">Data Viz</span>
+      </div>
     </div>
   </div>
 </section>
@@ -344,31 +442,16 @@
         I am a <strong>Results-driven Data Analyst and Business Intelligence professional</strong> with 4+ years of combined experience in data analysis, IT support, and business operations.
       </p>
       <p>
-        I specialise in building dashboards, automating reports, managing inventory systems, and deriving actionable insights from data using <strong>Excel, Power BI, and ERP platforms</strong>. I'm adept at translating business needs into data-driven solutions that improve efficiency and profitability.
+        I specialise in building dashboards, automating reports, managing inventory systems, and deriving actionable insights from data using <strong>Excel, Power BI, and ERP platforms</strong>. I'm adept at translating complex business needs into data-driven solutions that improve efficiency and profitability.
       </p>
       <p>
-        I'm passionate about using data as a tool of <strong>economic empowerment</strong> — particularly for women-owned businesses. I'm open to data analysis projects, Women in STEM speaking opportunities, and mentoring the next generation of analysts.
+        I'm passionate about using data as a tool of <strong>economic empowerment</strong> — particularly for women-owned businesses. I'm open to data analysis roles, Women in STEM speaking opportunities, and mentoring the next generation of analysts.
       </p>
+      <div class="highlight-box">
+        <p>Currently: System Administrator / Data Analyst Intern at Maasai Mara University — building Power BI dashboards for bursary allocation across 1,000+ student records.</p>
+      </div>
     </div>
     <div>
-      <div class="stats-grid">
-        <div class="stat">
-          <div class="stat-n">4+</div>
-          <div class="stat-l">Years combined data & BI experience</div>
-        </div>
-        <div class="stat">
-          <div class="stat-n">30%</div>
-          <div class="stat-l">Profitability improvement through inventory analytics</div>
-        </div>
-        <div class="stat">
-          <div class="stat-n">1000+</div>
-          <div class="stat-l">Student records analysed via Power BI dashboards</div>
-        </div>
-        <div class="stat">
-          <div class="stat-n">15%</div>
-          <div class="stat-l">Customer base growth through purchasing trend analysis</div>
-        </div>
-      </div>
       <div class="skills-section">
         <h3>Core Skills</h3>
         <div class="skill-groups">
@@ -379,16 +462,16 @@
               <span class="tag">Power BI</span>
               <span class="tag">Dashboard Development</span>
               <span class="tag">Data Visualization</span>
-              <span class="tag">Data Entry</span>
+              <span class="tag">Data Entry & Cleaning</span>
             </div>
           </div>
           <div>
             <div class="skill-group-label">Systems & Tools</div>
             <div class="tags">
               <span class="tag">ERP Systems</span>
+              <span class="tag">OS Ticket</span>
               <span class="tag">Zuku Broad Hub</span>
               <span class="tag">WordPress</span>
-              <span class="tag">OS Ticket</span>
               <span class="tag">PHP</span>
               <span class="tag">JavaScript</span>
             </div>
@@ -399,8 +482,17 @@
               <span class="tag">Inventory Management</span>
               <span class="tag">Sales Analysis</span>
               <span class="tag">Customer Trend Analysis</span>
-              <span class="tag">IT Support</span>
-              <span class="tag">System Administration</span>
+              <span class="tag">IT Support & Admin</span>
+              <span class="tag">Pricing Strategy</span>
+            </div>
+          </div>
+          <div>
+            <div class="skill-group-label">Soft Skills</div>
+            <div class="tags">
+              <span class="tag">Problem-Solving</span>
+              <span class="tag">Communication</span>
+              <span class="tag">Attention to Detail</span>
+              <span class="tag">Deadline Management</span>
             </div>
           </div>
         </div>
@@ -476,7 +568,7 @@
       </div>
       <div>
         <div class="exp-role">Intern → Warehouse Supervisor</div>
-        <div class="exp-note">Started as an Attachee in team supervision and petty cash management, then promoted to Warehouse Supervisor.</div>
+        <div class="exp-note">Started as an Attachee in team supervision & petty cash management, promoted to Warehouse Supervisor.</div>
         <ul class="exp-bullets">
           <li>Performed data analysis on team performance and job scope metrics to support operational decision-making</li>
           <li>Supervised teams and managed petty cash, ensuring accountability and accurate financial records</li>
@@ -524,35 +616,30 @@
   <div class="label">Portfolio</div>
   <h2>Featured <em>Projects</em></h2>
   <div class="projects-grid">
-
     <div class="proj-card">
       <div class="proj-num">01</div>
       <span class="proj-tag">Power BI · 2026</span>
       <h3>Bursary Student Data Analysis Dashboard</h3>
       <p>Developed Power BI dashboards to analyse bursary student data at Maasai Mara University, enabling data-driven decisions on funding allocation and eligibility tracking across 1,000+ student records.</p>
     </div>
-
     <div class="proj-card">
       <div class="proj-num">02</div>
       <span class="proj-tag">Mobile & Web · 2025</span>
       <h3>Pori Alert — Wildlife Sighting App</h3>
       <p>Collaborating on the design and development of a mobile and web-based app enabling citizens to report wildlife sightings in human-populated areas, with real-time alerts to authorities — even offline.</p>
     </div>
-
     <div class="proj-card">
       <div class="proj-num">03</div>
       <span class="proj-tag">Excel · 2023 – 2024</span>
       <h3>Sales & Inventory Dashboard</h3>
-      <p>Built interactive dashboards using Excel to track retail shop performance, identify top-selling products, and support stock and pricing decisions — contributing to a 30% profitability improvement.</p>
+      <p>Built interactive Excel dashboards to track retail shop performance, identify top-selling products, and support stock and pricing decisions — contributing to a 30% profitability improvement.</p>
     </div>
-
     <div class="proj-card">
       <div class="proj-num">04</div>
       <span class="proj-tag">PHP · JavaScript · 2022</span>
       <h3>Rental Management System</h3>
       <p>Developed a system to track vacant apartments and automatically generate tenant invoices, reducing manual administrative work and improving accuracy for property managers.</p>
     </div>
-
   </div>
 </section>
 
@@ -562,9 +649,7 @@
     <div class="contact-left">
       <div class="label">Let's Connect</div>
       <h2>Get In <em>Touch</em></h2>
-      <p>
-        I'm open to data analysis roles, Business Intelligence projects, Women in STEM speaking opportunities, and mentoring aspiring analysts. Let's build something meaningful with data.
-      </p>
+      <p>I'm open to data analysis roles, Business Intelligence projects, Women in STEM speaking opportunities, and mentoring aspiring analysts. Let's build something meaningful with data.</p>
       <div class="contact-items">
         <a href="mailto:maureenshimwa@gmail.com" class="contact-item">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
@@ -574,15 +659,19 @@
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.4 2 2 0 0 1 3.6 1.22h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.81a16 16 0 0 0 6.29 6.29l.95-.94a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
           <span>Phone</span> +254 740 442 225
         </a>
-        <a href="https://www.linkedin.com/in/maureen-wanjiku-mwangi/" target="_blank" class="contact-item">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
-          <span>LinkedIn</span> maureen-wanjiku-mwangi
+        <a href="https://drive.google.com/file/d/1xGBHU5HZ6kuTUFdojLbrB5Jhk9VmR-4I/view?usp=sharing" target="_blank" class="contact-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+          <span>Resume</span> View / Download CV
         </a>
       </div>
     </div>
     <div class="contact-right">
       <h3>More Links</h3>
       <div class="social-grid">
+        <a href="https://www.linkedin.com/in/maureen-wanjiku-mwangi/" target="_blank" class="social-card">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+          LinkedIn
+        </a>
         <a href="https://github.com/Maureenshiko" target="_blank" class="social-card">
           <svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
           GitHub
@@ -594,10 +683,6 @@
         <a href="https://www.datascienceportfol.io/maureenshimwa" target="_blank" class="social-card">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
           DS Portfolio
-        </a>
-        <a href="https://x.com/maurynshikoh46" target="_blank" class="social-card">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-          X / Twitter
         </a>
       </div>
     </div>
